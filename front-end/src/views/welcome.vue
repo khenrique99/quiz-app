@@ -1,5 +1,6 @@
 <script>
-  import Toggle from '@vueform/toggle'
+  import Toggle from '@vueform/toggle';
+
   export default {
     components: {
       Toggle,
@@ -15,7 +16,7 @@
 <template>
 
   <h1 class="titleMain">Seja Bem-vindo(a)</h1>
-  <div class="containerApp" v-if="!notification">
+  <div class="containerApp mb-5" v-if="!notification">
     <div class="welcome">
       <Toggle
         v-model="notification"
@@ -31,9 +32,11 @@
       <br>
       O Sistema conta também com niveis de perguntas, sendo elas <span>Facil/Médio/Difícil</span>.
       <img src="../assets/icons/iconGrafic.png" style="float: right;">
-      <h1 style="clear:both">Quiz - App</h1>
+      <h1 style="clear:both"></h1>
     </p>
   </div>
+
+  <QuestionsHome />
 
 </template>
 
@@ -47,7 +50,7 @@
   }
   .welcome div {
     float: right;
-    margin-top: 3px;
+    margin-top: 5px;
   }
   .welcome p {
     font-size: 15px;
