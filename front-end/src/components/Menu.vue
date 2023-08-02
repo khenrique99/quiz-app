@@ -24,10 +24,8 @@
       <ion-icon name="server"></ion-icon>
       <p>Administrador</p>
     </router-link>
-    <router-link to="/logout" class="gridMenu">
       <ion-icon name="close-circle"></ion-icon>
       <p>Sair</p>
-    </router-link>
   </div>
 </template>
 
