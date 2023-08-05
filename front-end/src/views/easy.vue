@@ -3,15 +3,7 @@
     name: 'App',
     data: function () {
       return {
-        screen: '1',
-        response: '1',
         questionListEasy: {},
-        questions: {},
-      }
-    },
-    methods: {
-      screenShow: function(i) {
-        this.screen = i;
       }
     },
     mounted() {
@@ -20,17 +12,12 @@
           .then((res) => {
             this.questionListEasy = res.data;
           });
-      fetch('http://127.0.0.1:8000/api/questionListEasy/1')
-        .then(response => response.json())
-          .then((res) => {
-            this.questions = res.data;
-          })
     }
   }
 </script>
 
 <template>
-  <div class="questions" v-if="this.screen == '1'">
+  <div class="questions">
     <h1 class="questionsTitle">
       Nivel:
         <span>FÁCIL</span>
@@ -40,34 +27,10 @@
         <span>{{ easy.title }}</span>
       </p>
       <p class="iconQuestion">
-        <ion-icon name="arrow-redo" @click="screenShow('2')"></ion-icon>
+        <router-link :to="`/questionEasy/${easy.id}`" class="gridMenu">
+          <ion-icon name="arrow-redo"></ion-icon>
+        </router-link>
       </p>
-    </div>
-  </div>
-  <div v-if="this.screen == '2'">
-    <div class="btnBack" @click="screenShow('1')">
-      <ion-icon name="arrow-undo"></ion-icon>
-      <p>Retornar à tela anterior</p>
-    </div>
-    <div class="questionScreen" v-for="question in questions" :key="question.id">
-      <h2>#{{ question.id }}</h2>
-      <h1>COCA-COLA vs PEPSI</h1>
-      <img src="../assets/questions/images/logoCOCA-COLA.png">
-      <img src="../assets/questions/images/logoPEPSI.png">
-      <p>Coca-Cola e Pepsi são duas das marcas de refrigerante mais conhecidas e consumidas em todo o mundo. Ambas têm uma longa história de rivalidade no mercado de bebidas carbonatadas, competindo por preferência dos consumidores.</p>
-      <h1 class="mt-5" v-if="this.response == '1'">Dentre essas duas marcas de refrigerantes, qual você escolhe?</h1>
-      <h1 class="mt-5" v-if="this.response == '2'">COCA-COLA foi a sua escolha!</h1>
-      <div v-if="this.response == '2'">
-        <p class="text-center" style="text-indent: 0px;">Você concorda com 57% dos usuários</p>
-      </div>
-      <div class="btnFormQuestion" v-if="this.response == '1'">
-        <form>
-          <button>COCA-COLA</button>
-        </form>
-        <form>
-          <button>PEPSI</button>
-        </form>
-      </div>
     </div>
   </div>
 </template>
@@ -118,26 +81,11 @@
     color: rgb(94, 231, 30);
     transition: 0.4s ease-in-out;
     cursor: pointer;
+    margin-top: -15px;
+    margin-right: -20px;
   }
   .iconQuestion ion-icon:hover {
     color: white;
-  }
-  .btnBack {
-    display: flex;
-    cursor: pointer;
-    width: 300px;
-    margin-bottom: 30px;
-  }
-  .btnBack ion-icon {
-    margin-left: 30px;
-    font-size: 35px;
-    color: rgb(94, 231, 30);
-  }
-  .btnBack p {
-    font-size: 22px;
-    text-indent: 10px;
-    padding-top: 3px;
-    color: rgb(94, 231, 30);
   }
   .questionScreen {
     width: 1310px;

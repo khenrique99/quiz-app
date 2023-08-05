@@ -5,6 +5,7 @@ import Administrator from  '../views/administrator.vue';
 import Welcome from  '../views/welcome.vue';
 import Preferences from  '../views/preferences.vue';
 import easy from  '../views/easy.vue';
+import getEasy from  '../views/getEasy.vue';
 import medium from  '../views/medium.vue';
 import hard from  '../views/hard.vue';
 import Guard from '../services/middleware';
@@ -41,6 +42,12 @@ const routes = [
     path: "/questionEasy",
     name: "easy",
     component: easy,
+    beforeEnter: Guard.auth
+  },
+    {
+    path: "/questionEasy/:id",
+    name: "getEasy",
+    component: getEasy,
     beforeEnter: Guard.auth
   },
   {
