@@ -11,12 +11,12 @@ class QuestionController extends Controller
 {
   public function questionListEasy()
   {
-		$listEasy = (new Question)->listQuestionEasy();
-		return QuestionlistResource::collection($listEasy);
+    $listEasy = (new Question)->listQuestionEasy();
+    return QuestionlistResource::collection($listEasy);
   }
   public function getQuestions($id)
   {
-    $questions = (new Question)->getQuestion();
+    $questions = (new Question)->getQuestion($id);
     return QuestionResource::collection($questions);
   }
 }
