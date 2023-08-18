@@ -1,9 +1,9 @@
 <script>
-import Toggle from '@vueform/toggle';
+import { NSwitch } from 'naive-ui';
 
 export default {
   components: {
-    Toggle,
+    NSwitch
   },
   data() {
     return {
@@ -19,11 +19,15 @@ export default {
     <div class="gridPreferences">
       <div class="preferencesList">
         <p class="titleSwitch">Respostas anônimas</p>
-        <Toggle v-model="notification" class="switch"/>
+        <n-space>
+          <n-switch v-model="notification" :round="false" class="switchSquare"/>
+        </n-space>
       </div>
       <div class="preferencesList">
         <p class="titleSwitch">Apresentação do sistema na página principal</p>
-        <Toggle v-model="notification" class="switch"/>
+        <n-space>
+          <n-switch v-model="notification" :round="false" class="switchSquare"/>
+        </n-space>
       </div>
     </div>
   </div>
@@ -59,7 +63,7 @@ export default {
     transition: 0.4s ease-in-out;
   }
   .preferencesList:hover {
-    background-color: rgba(108, 235, 146, 0.3);
+    background-color: rgba(108, 235, 146, 0.1);
     border-radius: 15px;
     cursor: default;
   }
@@ -67,12 +71,12 @@ export default {
     color: white;
     text-indent: 20px;
   }
-  .switch {
+  .switchSquare {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
-    margin-top: -10px;
+    margin-top: 10px;
   }
   .btnDisplay {
     border-radius: 15px;
