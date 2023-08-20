@@ -8,10 +8,10 @@
     },
     mounted() {
       fetch('http://127.0.0.1:8000/api/questionListEasy')
-        .then(response => response.json())
-          .then((res) => {
-            this.questionListEasy = res.data;
-          });
+      .then(response => response.json())
+        .then((res) => {
+          this.questionListEasy = res.data;
+        })
     }
   }
 </script>
@@ -93,10 +93,10 @@
     text-align: center;
   }
   .questionScreen h2 {
-    text-align: left;
+    text-align: center;
     color: white;
     font-weight: bolder;
-    font-size: 22px;
+    font-size: 20px;
   }
   .questionScreen h1 {
     font-size: 25px;
