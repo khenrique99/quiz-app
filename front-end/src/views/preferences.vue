@@ -1,16 +1,16 @@
 <script>
-import { NSwitch } from 'naive-ui';
+  import { NSwitch } from 'naive-ui';
 
-export default {
-  components: {
-    NSwitch
-  },
-  data() {
-    return {
-      notification: false
-    }
-  },
-}
+  export default {
+    components: {
+      NSwitch
+    },
+    data() {
+      return {
+        notification: false
+      }
+    },
+  }
 </script>
 
 <template>
