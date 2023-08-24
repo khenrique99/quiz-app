@@ -1,9 +1,9 @@
 <script>
-  import Toggle from '@vueform/toggle';
+  import { NSwitch } from 'naive-ui';
 
   export default {
     components: {
-      Toggle,
+      NSwitch,
     },
     data() {
       return {
@@ -16,24 +16,30 @@
 <template>
 
   <h1 class="titleMain">Seja Bem-vindo(a)</h1>
-  <div class="containerApp mb-5" v-if="!notification">
+  <div class="containerApp mb-5">
     <div class="welcome">
-      <Toggle
-        v-model="notification"
-      />
-      <p>Desativar notificação</p>
+      <n-switch v-model:value="notification">
+        <template #checked>
+          Ativar Tutorial
+        </template>
+        <template #unchecked>
+          Desativar Tutorial
+        </template>
+      </n-switch>
     </div>
-    <h1>Como funciona o Quiz?</h1>
-    <p class="welcomeNotification">
-      <img src="../assets/icons/iconInformation.png" style="float: left;">
-      É bem simples e interativo, consiste em escolher uma opção dentre duas alternativas!
-      <br>
-      O objetivo é descobrir se as escolhas são manipuladas pela idade, mas fique tranquilo(a), se não quiser aparecer nas estatísticas basta ir em <a href="/preferencies">preferências</a> e marcar a opção de "respostas anônimas"!
-      <br>
-      O Sistema conta também com niveis de perguntas, sendo elas <span>Facil/Médio/Difícil</span>.
-      <img src="../assets/icons/iconGrafic.png" style="float: right;">
-      <h1 style="clear:both"></h1>
-    </p>
+    <div v-if="!notification">
+      <h1>Como funciona o Quiz?</h1>
+      <p class="welcomeNotification">
+        <img src="../assets/icons/iconInformation.png" style="float: left;">
+        É bem simples e interativo, consiste em escolher uma opção dentre duas alternativas!
+        <br>
+        O objetivo é descobrir se as escolhas são manipuladas pela idade, mas fique tranquilo(a), se não quiser aparecer nas estatísticas basta ir em <a href="/preferencies">preferências</a> e marcar a opção de "respostas anônimas"!
+        <br>
+        O Sistema conta também com niveis de perguntas, sendo elas <span>Facil/Médio/Difícil</span>.
+        <img src="../assets/icons/iconGrafic.png" style="float: right;">
+        <h1 style="clear:both"></h1>
+      </p>
+    </div>
   </div>
 
   <QuestionsHome />
