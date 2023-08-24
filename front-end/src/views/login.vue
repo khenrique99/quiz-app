@@ -1,9 +1,13 @@
 <script>
   import Cookie from 'js-cookie';
+  import { NSpin } from 'naive-ui';
 
   export default {
     name: 'login',
 
+    components: {
+      NSpin
+    },
     data() {
       return {
         email: '',
@@ -12,23 +16,32 @@
     },
 
     methods: {
-      login() {
+      async login() {
+        $('.loadingLogin').css('display', 'block');
+        $('.btnResetLogin').css('display', 'none');
+        $('.btnSubmitLogin').css('display', 'none');
+
         const payload = {
           email: this.email,
           password: this.password
         };
 
-        fetch('http://127.0.0.1:8000/api/auth/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(payload)
-        })
-        .then(response => response.json())
-        .then(res => {
-          Cookie.set('_myAppToken', res.aceess_token);
-        })
+        try {
+          const response = await fetch('http://127.0.0.1:8000/api/auth/login', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(payload)
+          });
+
+          const res = await response.json();
+          await Cookie.set('_myAppToken', res.aceess_token); // Esperar pela operação assíncrona
+
+          this.$router.push('/');
+        } catch (error) {
+          console.error('Erro durante o login:', error);
+        }
       },
     },
   };
@@ -58,9 +71,12 @@
             required
           />
       </div>
+      <n-space class="loadingLogin">
+        <n-spin size="large" />
+      </n-space>
       <div class="btn-form">
-        <input type="reset" value="Limpar dados">
-        <input type="submit" value="Entrar">
+        <input class="btnResetLogin" type="reset" value="Limpar dados">
+        <input class="btnSubmitLogin" type="submit" value="Entrar">
       </div>
     </form>
   </div>
@@ -107,7 +123,8 @@
     margin-top: 20px;
     margin-bottom: 20px;
   }
-  .btn-form input {
+  .btnResetLogin,
+  .btnSubmitLogin {
     background-color: transparent;
     border: none;
     color: rgb(94, 231, 30);
@@ -117,10 +134,17 @@
     padding: 5px 15px;
     border: 1px solid rgb(94, 231, 30);
   }
-  .btn-form input:hover {
+  .btnResetLogin:hover,
+  .btnSubmitLogin:hover {
     background-color: rgb(94, 231, 30);
     color: rgb(40,40,40);
     padding: 5px 15px;
+  }
+  .loadingLogin {
+    position: absolute;
+    margin-left: 455px;
+    margin-top: 30px;
+    display: none;
   }
   @media (max-width: 577px){
     .container {

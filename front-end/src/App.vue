@@ -1,10 +1,12 @@
 <script setup>
   import Menu from './components/Menu.vue';
+  import Modal from './components/Modal.vue';
 </script>
 
 <template>
 
   <main>
+    <Modal />
     <Menu />
     <router-view />
   </main>
